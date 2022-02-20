@@ -72,5 +72,31 @@ def new():
       code = 1
     )
 
+@app.route("/report", methods = ['POST','GET'])
+def report():
+  if request.method == 'POST':
+    if request.form["report"] is not None:
+      rf = open('reports.txt', 'r+')
+      rl = rf.read()
+      rl = rl + "\n" + str(request.form["report"])
+      rf.close()
+      rf = open('reports.txt', 'w+')
+      rf.write(rl)
+      rf.close()
+      return jsonify(
+        error = False,
+        id = url
+      )
+    else:
+      return jsonify(
+        error = True,
+        code = 2
+      )
+  else:
+    return jsonify(
+      error = True,
+      code = 1
+    )
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=False)
