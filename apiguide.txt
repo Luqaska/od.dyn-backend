@@ -1,0 +1,6 @@
+Error code | Meaning
+-----------------------------
+1          | Incorrect method
+2          | Required scopes missing
+3          | Not found
+4          | Submitions blocked
